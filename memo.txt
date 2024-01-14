@@ -1,0 +1,41 @@
+### docker利用のメモ ###
+
+# バージョン確認
+docker --version
+
+# docker hubにログイン
+docker login
+
+# docker hubからimageを取得
+docker pull <image>
+
+# ホストにあるdocker imageのリスト取得
+docker images
+
+# 存在するコンテナの確認
+docker ps -a
+
+# コンテナを作成
+docker run <image>
+
+# 作成済みのコンテナを起動する
+docker restart <CONTAINER ID or NAMES>
+
+# イメージをベースにした新しいDockerコンテナが起動し、そのコンテナ内で対話的なBashシェルが立ち上げ
+docker run -it <image> bash
+
+# 既存の実行中のコンテナ内で新しいプロセスを開始
+docker exec -it <CONTAINER ID> bash
+
+# コンテナからイメージを作成
+docker commit <CONTAINER ID> <イメージ名:タグ名>
+
+# イメージ名を変更（<ユーザー名:リポジトリ名>が新しいイメージ名になる。）
+※ docker hubを利用する場合
+docker tag <元のイメージ名:元のタグ名> <ユーザー名:リポジトリ名>
+
+# docker hubにイメージのプッシュ
+docker push <image>
+
+# dockerイメージの削除
+docker rmi <image>

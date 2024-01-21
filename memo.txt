@@ -3,30 +3,44 @@
 # バージョン確認
 docker --version
 
+【docker hubにログインしてイメージを取得】
 # docker hubにログイン
 docker login
 
-# docker hubからimageを取得
+# docker hubからイメージを取得
 docker pull <image>
 
+
+【コンテナ起動、コンテナ操作】
 # ホストにあるdocker imageのリスト取得
 docker images
 
 # 存在するコンテナの確認
 docker ps -a
 
-# コンテナを作成
+# コンテナを作成して起動(create+start)
 docker run <image>
-
-# 作成済みのコンテナを起動する
-docker restart <CONTAINER ID or NAMES>
 
 # イメージをベースにした新しいDockerコンテナが起動し、そのコンテナ内で対話的なBashシェルが立ち上げ
 docker run -it <image> bash
 
+# コンテナに名前をつけて作成し、起動
+docekr run --name <name> <image>
+
+# コンテナを起動後にdetachする(バックグラウンドで動かす)
+docker run -d <image>
+
+# コンテナをExit後に削除するようにして起動
+docker run --rm <image>
+
+# 作成済みのコンテナを起動する
+docker restart <CONTAINER ID or NAMES>
+
 # 既存の実行中のコンテナ内で新しいプロセスを開始
 docker exec -it <CONTAINER ID> bash
 
+
+【コンテナからイメージを作成し、docker hubにイメージのプッシュ】
 # コンテナからイメージを作成
 docker commit <CONTAINER ID> <イメージ名:タグ名>
 
@@ -37,5 +51,16 @@ docker tag <元のイメージ名:元のタグ名> <ユーザー名:リポジト
 # docker hubにイメージのプッシュ
 docker push <image>
 
-# dockerイメージの削除
+
+【イメージやコンテナの削除】
+# イメージの削除
 docker rmi <image>
+
+# コンテナの削除
+docker rm <CONTAINER ID>
+
+# コンテナを止める
+docker stop <CONTAINER ID>
+
+# 止まっているコンテナの全削除
+docker system prune

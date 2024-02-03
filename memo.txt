@@ -11,6 +11,16 @@ docker login
 docker pull <image>
 
 
+【Dockerfileをbuild】
+# カレントディレクトリにあるDockerfileをbuildしイメージを作る
+docker build -t <イメージ名> <ディレクトリ>
+# 例：docker build -t test:latest .
+
+# Dockerfileを指定してbuildしイメージを作る
+docker build -f <Dockerfile名> -t <イメージ名> <ディレクトリ>
+# 例：docker build -f ../Dockerfile.dev -t test:latest .
+
+
 【コンテナ起動、コンテナ操作】
 # ホストにあるdocker imageのリスト取得
 docker images

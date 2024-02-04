@@ -25,6 +25,9 @@ docker build -f <Dockerfile名> -t <イメージ名> <ディレクトリ>
 # ホストにあるdocker imageのリスト取得
 docker images
 
+# コンテナの詳細確認(割り当てられているリソース確認)
+docker inspect <container>
+
 # 存在するコンテナの確認
 docker ps -a
 
@@ -36,6 +39,24 @@ docker run -it <image> bash
 
 # コンテナに名前をつけて作成し、起動
 docekr run --name <name> <image>
+
+# ホストのファイルシステムをコンテナにマウント
+# -v <host>:<container>
+# new_dirが無くても作成される
+docekr run -it -v ~/Desktop/mounted_dir:/mount_dir <image> bash
+
+# ユーザーIDとグループIDを指定してコンテナをrunする
+# -u <user id>:<group id>
+docekr run -it -u $(id -u):$(id -g) -v ~/Desktop/mounted_dir:/mount_dir <image> bash
+
+# ホストのポートをコンテナのポートに繋げる
+# -p <host_port>:<container_port>
+docker run -it -p 8888:8888 --rm jupyter/datascience-notebook bash
+
+# リソース上限を設定
+# --cpus <cpu物理コア数>
+# --memory <byte>
+docker run -it --cpus 2 --memory 2g <image> bash
 
 # コンテナを起動後にdetachする(バックグラウンドで動かす)
 docker run -d <image>

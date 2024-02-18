@@ -95,3 +95,18 @@ docker stop <CONTAINER ID>
 
 # 止まっているコンテナの全削除
 docker system prune
+
+
+【docker compose】
+docker runコマンドが長くなる時や複数のコンテナをまとめて起動する時に使う。
+# イメージをビルド
+docker-compose build
+
+# コンテナを作成して起動
+docker-compose up
+
+# 存在するコンテナの確認
+docker-compose ps
+
+# 既存の実行中のコンテナ内で新しいプロセスを開始(serviceはymlで指定したサービス名)
+docker-compose exec <service> <command>
